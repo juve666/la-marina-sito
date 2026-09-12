@@ -4,7 +4,7 @@ export default function Hero() {
       <div className="hero-inner">
         <div className="eyebrow-row reveal">
           <div className="logo-mark big" aria-hidden="true">
-            <img src="/logo.png" alt="Stemma A.S.D. La Marina" />
+            <img src="/logo.svg" alt="Stemma A.S.D. La Marina" />
           </div>
           <span className="eyebrow">A.S.D. Calcio a 5 · Letojanni</span>
         </div>
