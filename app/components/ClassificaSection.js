@@ -25,7 +25,7 @@ export default function ClassificaSection({ matches, standings }) {
             <h3>Il nostro andamento</h3>
             <span>Calcolato automaticamente dai risultati</span>
           </div>
-          <div className="staff-grid reveal" style={{ gridTemplateColumns: 'repeat(6, 1fr)' }}>
+          <div className="stats-grid reveal">
             <StatCell label="Punti" value={form.points} highlight />
             <StatCell label="Giocate" value={form.played} />
             <StatCell label="Vinte" value={form.won} />
@@ -43,9 +43,9 @@ export default function ClassificaSection({ matches, standings }) {
           {standings.length === 0 ? (
             <p className="empty-note">Classifica non ancora disponibile.</p>
           ) : (
-            <div className="cal-list reveal">
+            <div className="cal-list reveal standings-scroll">
               <div className="match-row" style={{ background: 'var(--foam-dim)', fontWeight: 600, fontSize: 12 }}>
-                <div className="match-main" style={{ gridTemplateColumns: '2fr repeat(7, 1fr)' }}>
+                <div className="standings-row">
                   <div>Squadra</div>
                   <div>Pt</div>
                   <div>G</div>
@@ -64,7 +64,7 @@ export default function ClassificaSection({ matches, standings }) {
                     className="match-row"
                     style={isUs ? { background: 'var(--azure-soft)' } : undefined}
                   >
-                    <div className="match-main" style={{ gridTemplateColumns: '2fr repeat(7, 1fr)' }}>
+                    <div className="standings-row">
                       <div style={{ fontWeight: isUs ? 700 : 500, color: 'var(--navy)' }}>{s.team_name}</div>
                       <div style={{ fontWeight: 700, color: 'var(--navy)' }}>{s.points}</div>
                       <div>{s.played}</div>
