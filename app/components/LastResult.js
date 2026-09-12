@@ -26,7 +26,7 @@ export default function LastResult({ match }) {
             <div className="lr-teams">
               <div className="lr-team">
                 <div className={`lr-team-badge ${match.is_home ? 'us' : ''}`}>
-                  {match.is_home ? <img src="/logo.png" alt="La Marina" /> : squad(match.opponent)}
+                  {match.is_home ? <img src="/logo.svg" alt="La Marina" /> : squad(match.opponent)}
                 </div>
                 <div className="lr-team-name">{match.is_home ? 'La Marina' : match.opponent}</div>
               </div>
@@ -37,7 +37,7 @@ export default function LastResult({ match }) {
               </div>
               <div className="lr-team">
                 <div className={`lr-team-badge ${!match.is_home ? 'us' : ''}`}>
-                  {!match.is_home ? <img src="/logo.png" alt="La Marina" /> : squad(match.opponent)}
+                  {!match.is_home ? <img src="/logo.svg" alt="La Marina" /> : squad(match.opponent)}
                 </div>
                 <div className="lr-team-name">{!match.is_home ? 'La Marina' : match.opponent}</div>
               </div>
