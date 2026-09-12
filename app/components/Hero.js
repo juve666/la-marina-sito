@@ -12,7 +12,7 @@ export default function Hero() {
           La <em>Marina</em>
         </h1>
         <p className="hero-sub reveal">
-          Dal lungomare di Letojanni al parquet della Serie C2, Girone B. Una squadra, un colore:
+          Dal lungomare di Letojanni al parquet della Serie C2, Girone C. Una squadra, un colore:
           il blu del mare che ci guarda giocare.
         </p>
         <div className="colori-chips reveal">
@@ -27,7 +27,7 @@ export default function Hero() {
             Bianco
           </div>
           <div className="chip">
-            <span className="dot" style={{ background: '#F0B429' }}></span>Serie C2 · Girone B
+            <span className="dot" style={{ background: '#F0B429' }}></span>Serie C2 · Girone C
           </div>
         </div>
       </div>
