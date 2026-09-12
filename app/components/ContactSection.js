@@ -16,11 +16,15 @@ export default function ContactSection() {
                 <span>info@lamarinacalcioa5.it</span>
                 <span className="lbl">Email</span>
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                <span>@lamarinacalcioa5</span>
+              <a href="https://www.instagram.com/asdlamarinac5" target="_blank" rel="noopener noreferrer">
+                <span>@asdlamarinac5</span>
                 <span className="lbl">Instagram</span>
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              
+                href="https://www.facebook.com/profile.php?id=61592518317269"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>La Marina Calcio a 5</span>
                 <span className="lbl">Facebook</span>
               </a>
