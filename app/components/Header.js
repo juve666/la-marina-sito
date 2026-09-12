@@ -53,7 +53,7 @@ export default function Header() {
       <div className="navbar">
         <div className="brand">
           <div className="logo-mark" aria-hidden="true">
-            <img src="/logo.png" alt="Stemma A.S.D. La Marina" />
+            <img src="/logo.svg" alt="Stemma A.S.D. La Marina" />
           </div>
           <div className="brand-name">
             La <span>Marina</span>
