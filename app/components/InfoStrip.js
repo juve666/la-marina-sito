@@ -8,7 +8,7 @@ export default function InfoStrip() {
         </div>
         <div className="info-cell reveal">
           <div className="info-label">Campionato</div>
-          <div className="info-value">Serie C2 · Girone B</div>
+          <div className="info-value">Serie C2 · Girone C</div>
         </div>
         <div className="info-cell reveal">
           <div className="info-label">Colori sociali</div>
