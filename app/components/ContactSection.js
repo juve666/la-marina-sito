@@ -20,11 +20,7 @@ export default function ContactSection() {
                 <span>@asdlamarinac5</span>
                 <span className="lbl">Instagram</span>
               </a>
-              
-                href="https://www.facebook.com/profile.php?id=61592518317269"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://www.facebook.com/profile.php?id=61592518317269" target="_blank" rel="noopener noreferrer">
                 <span>La Marina Calcio a 5</span>
                 <span className="lbl">Facebook</span>
               </a>
