@@ -5,11 +5,13 @@ import { useRouter } from 'next/navigation';
 import PlayersManager from '../components/admin/PlayersManager';
 import StaffManager from '../components/admin/StaffManager';
 import MatchesManager from '../components/admin/MatchesManager';
+import StandingsManager from '../components/admin/StandingsManager';
 
 const TABS = [
   { id: 'players', label: 'Giocatori' },
   { id: 'staff', label: 'Dirigenza' },
   { id: 'matches', label: 'Calendario' },
+  { id: 'standings', label: 'Classifica' },
 ];
 
 export default function AdminDashboard() {
@@ -58,6 +60,7 @@ export default function AdminDashboard() {
         {tab === 'players' && <PlayersManager />}
         {tab === 'staff' && <StaffManager />}
         {tab === 'matches' && <MatchesManager />}
+        {tab === 'standings' && <StandingsManager />}
       </div>
     </div>
   );

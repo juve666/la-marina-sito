@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'calendario', label: 'Calendario' },
+  { id: 'classifica', label: 'Classifica' },
   { id: 'squadra', label: 'Squadra' },
   { id: 'contatti', label: 'Contatti' },
 ];

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const EMPTY = { role: '', name: '', sort_order: '' };
+const EMPTY = { role: '', name: '', sort_order: '', photo_url: '' };
 
 export default function StaffManager() {
   const [staff, setStaff] = useState([]);
@@ -10,6 +10,7 @@ export default function StaffManager() {
   const [editingId, setEditingId] = useState(null);
   const [msg, setMsg] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
 
   async function load() {
     setLoading(true);
@@ -23,9 +24,32 @@ export default function StaffManager() {
     load();
   }, []);
 
+  async function handlePhotoChange(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    setUploading(true);
+    setMsg(null);
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('folder', 'staff');
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (res.ok) {
+        setForm((f) => ({ ...f, photo_url: data.url }));
+      } else {
+        setMsg({ type: 'error', text: data.error || 'Errore durante il caricamento della foto.' });
+      }
+    } catch (err) {
+      setMsg({ type: 'error', text: 'Errore di connessione durante il caricamento.' });
+    } finally {
+      setUploading(false);
+    }
+  }
+
   function startEdit(s) {
     setEditingId(s.id);
-    setForm({ role: s.role ?? '', name: s.name ?? '', sort_order: s.sort_order ?? '' });
+    setForm({ role: s.role ?? '', name: s.name ?? '', sort_order: s.sort_order ?? '', photo_url: s.photo_url ?? '' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -102,6 +126,18 @@ export default function StaffManager() {
                 onChange={(e) => setForm({ ...form, sort_order: e.target.value })}
               />
             </div>
+            <div className="form-field">
+              <label>Foto (opzionale)</label>
+              <input type="file" accept="image/*" onChange={handlePhotoChange} disabled={uploading} />
+              {uploading && <span style={{ fontSize: 12, color: 'var(--sub)' }}>Caricamento…</span>}
+              {form.photo_url && !uploading && (
+                <img
+                  src={form.photo_url}
+                  alt="Anteprima"
+                  style={{ width: 48, height: 48, objectFit: 'cover', borderRadius: '50%', marginTop: 6 }}
+                />
+              )}
+            </div>
           </div>
           <div className="admin-row-actions">
             <button className="btn-admin" type="submit">
@@ -126,6 +162,7 @@ export default function StaffManager() {
           <table className="admin-table">
             <thead>
               <tr>
+                <th></th>
                 <th>Ruolo</th>
                 <th>Nome</th>
                 <th></th>
@@ -134,6 +171,17 @@ export default function StaffManager() {
             <tbody>
               {staff.map((s) => (
                 <tr key={s.id}>
+                  <td>
+                    {s.photo_url ? (
+                      <img
+                        src={s.photo_url}
+                        alt=""
+                        style={{ width: 32, height: 32, objectFit: 'cover', borderRadius: '50%' }}
+                      />
+                    ) : (
+                      <span style={{ color: 'var(--sub)', fontSize: 12 }}>—</span>
+                    )}
+                  </td>
                   <td>{s.role}</td>
                   <td>{s.name}</td>
                   <td>

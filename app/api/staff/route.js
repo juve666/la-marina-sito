@@ -20,6 +20,7 @@ export async function POST(request) {
       role: body.role,
       name: body.name,
       sort_order: body.sort_order ? Number(body.sort_order) : 0,
+      photo_url: body.photo_url || null,
     })
     .select()
     .single();

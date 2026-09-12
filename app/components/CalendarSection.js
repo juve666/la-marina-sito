@@ -50,7 +50,9 @@ export default function CalendarSection({ matches }) {
         </div>
 
         {visible.length === 0 ? (
-          <p className="empty-note">Nessuna partita in questa categoria.</p>
+          <div className="cal-list reveal is-empty">
+            <p className="empty-note">Nessuna partita in questa categoria.</p>
+          </div>
         ) : (
           <div className="cal-list reveal">
             {visible.map((m) => {

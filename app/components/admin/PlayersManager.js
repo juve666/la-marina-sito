@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const EMPTY = { number: '', name: '', role: '', sort_order: '' };
+const EMPTY = { number: '', name: '', role: '', sort_order: '', photo_url: '' };
 
 export default function PlayersManager() {
   const [players, setPlayers] = useState([]);
@@ -10,6 +10,7 @@ export default function PlayersManager() {
   const [editingId, setEditingId] = useState(null);
   const [msg, setMsg] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
 
   async function load() {
     setLoading(true);
@@ -23,6 +24,29 @@ export default function PlayersManager() {
     load();
   }, []);
 
+  async function handlePhotoChange(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    setUploading(true);
+    setMsg(null);
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('folder', 'players');
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (res.ok) {
+        setForm((f) => ({ ...f, photo_url: data.url }));
+      } else {
+        setMsg({ type: 'error', text: data.error || 'Errore durante il caricamento della foto.' });
+      }
+    } catch (err) {
+      setMsg({ type: 'error', text: 'Errore di connessione durante il caricamento.' });
+    } finally {
+      setUploading(false);
+    }
+  }
+
   function startEdit(p) {
     setEditingId(p.id);
     setForm({
@@ -30,6 +54,7 @@ export default function PlayersManager() {
       name: p.name ?? '',
       role: p.role ?? '',
       sort_order: p.sort_order ?? '',
+      photo_url: p.photo_url ?? '',
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -115,6 +140,18 @@ export default function PlayersManager() {
                 onChange={(e) => setForm({ ...form, sort_order: e.target.value })}
               />
             </div>
+            <div className="form-field">
+              <label>Foto (opzionale)</label>
+              <input type="file" accept="image/*" onChange={handlePhotoChange} disabled={uploading} />
+              {uploading && <span style={{ fontSize: 12, color: 'var(--sub)' }}>Caricamento…</span>}
+              {form.photo_url && !uploading && (
+                <img
+                  src={form.photo_url}
+                  alt="Anteprima"
+                  style={{ width: 48, height: 48, objectFit: 'cover', borderRadius: '50%', marginTop: 6 }}
+                />
+              )}
+            </div>
           </div>
           <div className="admin-row-actions">
             <button className="btn-admin" type="submit">
@@ -139,6 +176,7 @@ export default function PlayersManager() {
           <table className="admin-table">
             <thead>
               <tr>
+                <th></th>
                 <th>N.</th>
                 <th>Nome</th>
                 <th>Ruolo</th>
@@ -148,6 +186,17 @@ export default function PlayersManager() {
             <tbody>
               {players.map((p) => (
                 <tr key={p.id}>
+                  <td>
+                    {p.photo_url ? (
+                      <img
+                        src={p.photo_url}
+                        alt=""
+                        style={{ width: 32, height: 32, objectFit: 'cover', borderRadius: '50%' }}
+                      />
+                    ) : (
+                      <span style={{ color: 'var(--sub)', fontSize: 12 }}>—</span>
+                    )}
+                  </td>
                   <td>{p.number ?? '-'}</td>
                   <td>{p.name}</td>
                   <td>{p.role}</td>

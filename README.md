@@ -56,4 +56,3 @@ Da quel momento in poi non serve più toccare codice: vai su `tuosito.vercel.app
 - **"Nessun giocatore inserito" anche dopo averli aggiunti**: controlla di aver inserito correttamente le 3 variabili Supabase su Vercel (Project Settings → Environment Variables), poi rifai il deploy
 - **Non riesci ad accedere a /admin**: verifica di aver impostato `ADMIN_PASSWORD` su Vercel e che coincida con quella digitata
 - **Errori durante il deploy**: controlla di aver caricato TUTTE le cartelle (comprese quelle che iniziano con un punto come .gitignore non è obbligatoria, ma app/, lib/, public/ sì)
-- .

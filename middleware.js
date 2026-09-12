@@ -8,7 +8,9 @@ export function middleware(request) {
   const isProtectedApiWrite =
     (pathname.startsWith('/api/players') ||
       pathname.startsWith('/api/staff') ||
-      pathname.startsWith('/api/matches')) &&
+      pathname.startsWith('/api/matches') ||
+      pathname.startsWith('/api/standings') ||
+      pathname.startsWith('/api/upload')) &&
     method !== 'GET';
 
   if (isAdminPage || isProtectedApiWrite) {
@@ -28,5 +30,12 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/players/:path*', '/api/staff/:path*', '/api/matches/:path*'],
+  matcher: [
+    '/admin/:path*',
+    '/api/players/:path*',
+    '/api/staff/:path*',
+    '/api/matches/:path*',
+    '/api/standings/:path*',
+    '/api/upload/:path*',
+  ],
 };
