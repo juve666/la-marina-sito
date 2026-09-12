@@ -45,7 +45,7 @@ export default function LastResult({ match }) {
             <div className="lr-meta">
               <span className="tag">{resultTag(match.our_score, match.their_score).label}</span>
               <span className="comp">
-                Serie C2 · Girone B{match.giornata ? ` · ${match.giornata}ª giornata` : ''}
+                Serie C2 · Girone C{match.giornata ? ` · ${match.giornata}ª giornata` : ''}
               </span>
               <span className="date">{formatDate(match.match_date)}</span>
             </div>
