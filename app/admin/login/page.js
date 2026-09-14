@@ -36,7 +36,7 @@ export default function AdminLoginPage() {
   return (
     <div className="login-shell">
       <form className="login-card" onSubmit={handleSubmit}>
-        <img src="/logo.png" alt="La Marina" className="login-logo" />
+        <img src="/logo.svg" alt="La Marina" className="login-logo" />
         <h1>Area riservata</h1>
         <p>Inserisci la password per gestire giocatori, dirigenza e calendario.</p>
         {error && <div className="admin-msg error">{error}</div>}
